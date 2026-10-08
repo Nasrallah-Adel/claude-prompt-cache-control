@@ -1,0 +1,12 @@
+{
+  "name": "nasrallah-cache-mods",
+  "owner": { "name": "Nasrallah Adel" },
+  "metadata": { "description": "Prompt-cache meter for Claude Code with a Clear button that hands off to a fresh conversation." },
+  "plugins": [
+    {
+      "name": "prompt-cache-control",
+      "source": "./",
+      "description": "Prompt-cache meter above the prompt (hit rate, read/wrote/new tokens, expiry countdown, /cache pane) plus a Clear button: writes a handoff brief with haiku, runs /clear, and sends the brief to the new conversation."
+    }
+  ]
+}
