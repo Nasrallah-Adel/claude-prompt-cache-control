@@ -1,4 +1,4 @@
-# prompt-cache-control (fork with a Clear + handoff button)
+# prompt-cache-control
 
 A prompt-cache meter above the Claude Code prompt. Every request Claude makes
 reports how much of its prompt the cache served, how much it wrote and how much
@@ -14,7 +14,7 @@ cache ██████████ 98% read 150k · wrote 1k · new 300 ⏱ 0:
 
 `/cache` opens a pane: the time left with a solid bar that shrinks as the cache runs out (green, yellow below 40% of the lifetime, red from the warning threshold), a stacked read / wrote / new bar for the last request, and a colour-coded table with one row per turn. Bars are filled cells and columns have fixed widths with no-break spaces, so the terminal and the Desktop (HTML) pane render the same.
 
-## Clear button (local addition)
+## Clear button
 
 The band and the `/cache` pane carry a **Clear** button (hotkey `c` once the band or pane has
 focus: ctrl+x tab for the band). Pressing it:
@@ -105,8 +105,6 @@ git clone https://github.com/Nasrallah-Adel/claude-prompt-cache-control.git
 claude --plugin-dir ./claude-prompt-cache-control
 ```
 
-The upstream, unmodified mod installs with
-`npx claude-code-templates@latest --mod observability/prompt-cache-control`.
 
 It is written to `.claude/skills/prompt-cache-control/`, which Claude Code auto-loads as `prompt-cache-control@skills-dir` once the workspace trust prompt is accepted. For one session with hot reload: `claude --plugin-dir .claude/skills/prompt-cache-control`. `claude plugin validate .claude/skills/prompt-cache-control` prints every event it hooks and every `$` call it makes; `claude plugin test .claude/skills/prompt-cache-control` runs its tests.
 
@@ -118,16 +116,9 @@ Options are read from user settings (`~/.claude/settings.json`, never project se
 
 **Requirements.** Mods are on by default in Claude Code 2.1.287+. Typed against Anthropic's declarations: https://github.com/anthropics/claude-code/tree/main/mods
 
-## Origin and license
+## License
 
-Fork of [prompt-cache-control](https://www.aitmpl.com/component/mod/observability/prompt-cache-control)
-by Daniel (San) Ávila, from [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates),
-MIT License. Changes in this fork:
-
-- **Clear button** (band and `/cache` pane, hotkey `c`): writes a handoff brief from the
-  session transcript with `haiku`, runs `/clear`, and submits the brief to the fresh
-  conversation. See "Clear button" above.
-- **Band layout**: the `read / wrote / new` figures stay on one row (the upstream fragment
-  rendered as a column in the terminal).
-
-See `LICENSE` for both copyrights.
+MIT. The cache meter started from Daniel Ávila's prompt-cache-control mod
+([davila7/claude-code-templates](https://github.com/davila7/claude-code-templates)); the Clear
+button, the handoff flow and the band layout are this repo's. `LICENSE` carries both copyright lines,
+as MIT requires.
